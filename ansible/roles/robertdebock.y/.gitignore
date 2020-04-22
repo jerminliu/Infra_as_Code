@@ -1,5 +1,0 @@
-molecule/*/.molecule
-*.log
-*.swp
-molecule/resources/out
-.DS_Store

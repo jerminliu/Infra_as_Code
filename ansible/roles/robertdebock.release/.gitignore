@@ -1,5 +1,0 @@
-molecule/*/.molecule
-*.log
-tools/roles/*
-tools/.vagrant
-*.swp
