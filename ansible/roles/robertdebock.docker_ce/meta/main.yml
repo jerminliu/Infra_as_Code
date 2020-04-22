@@ -1,0 +1,37 @@
+---
+galaxy_info:
+  author: Robert de Bock
+  role_name: docker_ce
+  description: Install and configure Docker CE on your system.
+  license: Apache-2.0
+  company: none
+  min_ansible_version: 2.6
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+    - name: EL
+      version:
+        - 7
+    - name: Fedora
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - bionic
+        - cosmic
+
+  galaxy_tags:
+    - dockerce
+    - alpine
+    - archlinux
+    - centos
+    - debian
+    - el
+    - fedora
+    - opensuse
+    - rhel
+    - ubuntu
+
+dependencies: []

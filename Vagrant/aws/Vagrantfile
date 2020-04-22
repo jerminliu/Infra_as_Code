@@ -1,0 +1,30 @@
+require 'yaml'
+require 'vagrant-aws'
+
+# read the ec2_instances.yaml file
+instances = YAML.load_file('ec2_instances.yaml')
+
+Vagrant.configure('2') do |config|
+  # provide the dummy box for aws
+  config.vm.box = 'dummy'
+  
+  config.vm.provider 'aws' do |aws|
+     aws.access_key_id = ENV['AWS_ACCESS_KEY_ID']
+     aws.secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+     aws.keypair_name = ENV['AWS_KEYNAME']
+     aws.region = 'us-east-2'
+  end # end of aws default config for all instances
+  
+  #loop through the instances in the ec2_instances.yaml
+  instances.each do |instance|
+      config.vm.define instance['name'] do |srv|
+        #setup per instance configuration
+        srv.vm.provider 'aws' do |aws, override|
+          aws.ami = instance['ami']
+          aws.instance_type = instance['type']
+          override.ssh.username = instance['user']
+          override.ssh.private_key_path = ENV['AWS_KEYPATH']
+        end # end of each ec2 instance override  
+      end # end of each srv      
+  end # end of yaml ec_instances loop
+end

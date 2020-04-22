@@ -1,0 +1,9 @@
+---
+# vars file for nginx
+_nginx_user:
+  default: nginx
+  Archlinux: root
+  Debian: root
+  Ubuntu: root
+
+nginx_user: "{{ _nginx_user[ansible_distribution] | default(_nginx_user['default']) }}"
